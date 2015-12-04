@@ -1,0 +1,487 @@
+a.out:
+(__TEXT,__text) section
+_main:
+0000000100000690	pushq	%rbp
+0000000100000691	movq	%rsp, %rbp
+0000000100000694	pushq	%r15
+0000000100000696	pushq	%r14
+0000000100000698	pushq	%rbx
+0000000100000699	subq	$0x88, %rsp
+00000001000006a0	leaq	0x889(%rip), %rdi       ## literal pool for: "%s%s%s"
+00000001000006a7	leaq	0x889(%rip), %rcx       ## literal pool for: "\n\n"
+00000001000006ae	leaq	-0x4d(%rbp), %rdx
+00000001000006b2	leaq	-0x40(%rbp), %rsi
+00000001000006b6	xorl	%eax, %eax
+00000001000006b8	movl	$0xa, %r8d
+00000001000006be	movl	%r8d, %r9d
+00000001000006c1	leaq	-0x57(%rbp), %r10
+00000001000006c5	leaq	_inputtedValue(%rip), %r11
+00000001000006cc	movq	0x93d(%rip), %rbx       ## literal pool symbol address: ___stack_chk_guard
+00000001000006d3	movq	(%rbx), %rbx
+00000001000006d6	movq	%rbx, -0x20(%rbp)
+00000001000006da	movl	$0x0, -0x5c(%rbp)
+00000001000006e1	movl	$0x0, (%r11)
+00000001000006e8	movq	0x821(%rip), %r11       ## literal pool for: "\nMIPS Program By: "
+00000001000006ef	movq	%r11, -0x40(%rbp)
+00000001000006f3	movq	0x81e(%rip), %r11       ## literal pool for: "ogram By: "
+00000001000006fa	movq	%r11, -0x38(%rbp)
+00000001000006fe	movw	0x81a(%rip), %r14w      ## literal pool for: "By: "
+0000000100000706	movw	%r14w, -0x30(%rbp)
+000000010000070b	movb	0x810(%rip), %r15b      ## literal pool for: ""
+0000000100000712	movb	%r15b, -0x2e(%rbp)
+0000000100000716	movq	0x806(%rip), %r11       ## literal pool for: "Brandon Wong"
+000000010000071d	movq	%r11, -0x4d(%rbp)
+0000000100000721	movl	0x803(%rip), %r8d       ## literal pool for: "Wong"
+0000000100000728	movl	%r8d, -0x45(%rbp)
+000000010000072c	movb	0x7fc(%rip), %r15b      ## literal pool for: ""
+0000000100000733	movb	%r15b, -0x41(%rbp)
+0000000100000737	movq	%rdi, -0x68(%rbp)
+000000010000073b	movq	%r10, %rdi
+000000010000073e	movq	%rsi, -0x70(%rbp)
+0000000100000742	movl	%eax, %esi
+0000000100000744	movq	%rdx, -0x78(%rbp)
+0000000100000748	movq	%r9, %rdx
+000000010000074b	movq	%rcx, -0x80(%rbp)
+000000010000074f	callq	0x100000eb8             ## symbol stub for: _memset
+0000000100000754	movq	-0x68(%rbp), %rdi
+0000000100000758	movq	-0x70(%rbp), %rsi
+000000010000075c	movq	-0x78(%rbp), %rdx
+0000000100000760	movq	-0x80(%rbp), %rcx
+0000000100000764	movb	$0x0, %al
+0000000100000766	callq	0x100000ebe             ## symbol stub for: _printf
+000000010000076b	leaq	0x7c8(%rip), %rdi       ## literal pool for: "%s"
+0000000100000772	leaq	0x7c4(%rip), %rsi       ## literal pool for: "Enter a number: "
+0000000100000779	movl	%eax, -0x84(%rbp)
+000000010000077f	movb	$0x0, %al
+0000000100000781	callq	0x100000ebe             ## symbol stub for: _printf
+0000000100000786	movl	$0xa, %esi
+000000010000078b	movq	0x886(%rip), %rcx       ## literal pool symbol address: ___stdinp
+0000000100000792	leaq	-0x57(%rbp), %rdi
+0000000100000796	movq	(%rcx), %rdx
+0000000100000799	movl	%eax, -0x88(%rbp)
+000000010000079f	callq	0x100000ea6             ## symbol stub for: _fgets
+00000001000007a4	leaq	-0x57(%rbp), %rdi
+00000001000007a8	movq	%rax, -0x90(%rbp)
+00000001000007af	callq	_value
+00000001000007b4	leaq	_inputtedValue(%rip), %rcx
+00000001000007bb	movl	%eax, (%rcx)
+00000001000007bd	callq	_solveNQ
+00000001000007c2	leaq	_NQBoard(%rip), %rcx
+00000001000007c9	movq	(%rcx), %rcx
+00000001000007cc	movq	%rcx, %rdi
+00000001000007cf	movl	%eax, -0x94(%rbp)
+00000001000007d5	callq	0x100000eac             ## symbol stub for: _free
+00000001000007da	movq	0x82f(%rip), %rcx       ## literal pool symbol address: ___stack_chk_guard
+00000001000007e1	movq	(%rcx), %rcx
+00000001000007e4	cmpq	-0x20(%rbp), %rcx
+00000001000007e8	jne	0x1000007fe
+00000001000007ee	xorl	%eax, %eax
+00000001000007f0	addq	$0x88, %rsp
+00000001000007f7	popq	%rbx
+00000001000007f8	popq	%r14
+00000001000007fa	popq	%r15
+00000001000007fc	popq	%rbp
+00000001000007fd	retq
+00000001000007fe	callq	0x100000ea0             ## symbol stub for: ___stack_chk_fail
+0000000100000803	nopw	%cs:(%rax,%rax)
+_value:
+0000000100000810	pushq	%rbp
+0000000100000811	movq	%rsp, %rbp
+0000000100000814	subq	$0x20, %rsp
+0000000100000818	movq	%rdi, -0x8(%rbp)
+000000010000081c	movl	$0x0, -0xc(%rbp)
+0000000100000823	movq	-0x8(%rbp), %rdi
+0000000100000827	callq	_length
+000000010000082c	subl	$0x1, %eax
+0000000100000831	movl	%eax, -0x10(%rbp)
+0000000100000834	cmpl	$0x0, -0x10(%rbp)
+000000010000083b	jl	0x100000896
+0000000100000841	movl	$0xa, %edi
+0000000100000846	movl	-0xc(%rbp), %eax
+0000000100000849	movl	-0x10(%rbp), %esi
+000000010000084c	movl	%eax, -0x14(%rbp)
+000000010000084f	callq	_power
+0000000100000854	movq	-0x8(%rbp), %rdi
+0000000100000858	movl	%eax, -0x18(%rbp)
+000000010000085b	callq	_length
+0000000100000860	subl	$0x1, %eax
+0000000100000865	subl	-0x10(%rbp), %eax
+0000000100000868	movslq	%eax, %rdi
+000000010000086b	movq	-0x8(%rbp), %rcx
+000000010000086f	movsbl	(%rcx,%rdi), %eax
+0000000100000873	subl	$0x30, %eax
+0000000100000878	movl	-0x18(%rbp), %esi
+000000010000087b	imull	%eax, %esi
+000000010000087e	movl	-0x14(%rbp), %eax
+0000000100000881	addl	%esi, %eax
+0000000100000883	movl	%eax, -0xc(%rbp)
+0000000100000886	movl	-0x10(%rbp), %eax
+0000000100000889	addl	$0xffffffff, %eax       ## imm = 0xFFFFFFFF
+000000010000088e	movl	%eax, -0x10(%rbp)
+0000000100000891	jmp	0x100000834
+0000000100000896	movl	-0xc(%rbp), %eax
+0000000100000899	addq	$0x20, %rsp
+000000010000089d	popq	%rbp
+000000010000089e	retq
+000000010000089f	nop
+_length:
+00000001000008a0	pushq	%rbp
+00000001000008a1	movq	%rsp, %rbp
+00000001000008a4	movq	%rdi, -0x10(%rbp)
+00000001000008a8	movl	$0x0, -0x14(%rbp)
+00000001000008af	movl	$0x0, -0x18(%rbp)
+00000001000008b6	cmpl	$0x64, -0x18(%rbp)
+00000001000008bd	jge	0x100000954
+00000001000008c3	movslq	-0x18(%rbp), %rax
+00000001000008c7	movq	-0x10(%rbp), %rcx
+00000001000008cb	movsbl	(%rcx,%rax), %edx
+00000001000008cf	cmpl	$0x0, %edx
+00000001000008d5	je	0x10000093f
+00000001000008db	movslq	-0x18(%rbp), %rax
+00000001000008df	movq	-0x10(%rbp), %rcx
+00000001000008e3	movsbl	(%rcx,%rax), %edx
+00000001000008e7	cmpl	$0xa, %edx
+00000001000008ed	je	0x10000093f
+00000001000008f3	movslq	-0x18(%rbp), %rax
+00000001000008f7	movq	-0x10(%rbp), %rcx
+00000001000008fb	movsbl	(%rcx,%rax), %edx
+00000001000008ff	subl	$0x30, %edx
+0000000100000905	cmpl	$0x9, %edx
+000000010000090b	jg	0x100000929
+0000000100000911	movslq	-0x18(%rbp), %rax
+0000000100000915	movq	-0x10(%rbp), %rcx
+0000000100000919	movsbl	(%rcx,%rax), %edx
+000000010000091d	cmpl	$0x20, %edx
+0000000100000923	jne	0x100000934
+0000000100000929	movl	-0x14(%rbp), %eax
+000000010000092c	movl	%eax, -0x4(%rbp)
+000000010000092f	jmp	0x10000095a
+0000000100000934	movl	-0x14(%rbp), %eax
+0000000100000937	addl	$0x1, %eax
+000000010000093c	movl	%eax, -0x14(%rbp)
+000000010000093f	jmp	0x100000944
+0000000100000944	movl	-0x18(%rbp), %eax
+0000000100000947	addl	$0x1, %eax
+000000010000094c	movl	%eax, -0x18(%rbp)
+000000010000094f	jmp	0x1000008b6
+0000000100000954	movl	-0x14(%rbp), %eax
+0000000100000957	movl	%eax, -0x4(%rbp)
+000000010000095a	movl	-0x4(%rbp), %eax
+000000010000095d	popq	%rbp
+000000010000095e	retq
+000000010000095f	nop
+_power:
+0000000100000960	pushq	%rbp
+0000000100000961	movq	%rsp, %rbp
+0000000100000964	movl	%edi, -0x4(%rbp)
+0000000100000967	movl	%esi, -0x8(%rbp)
+000000010000096a	movl	$0x1, -0xc(%rbp)
+0000000100000971	cmpl	$0x0, -0x8(%rbp)
+0000000100000978	je	0x1000009b0
+000000010000097e	movl	$0x1, -0x10(%rbp)
+0000000100000985	movl	-0x10(%rbp), %eax
+0000000100000988	cmpl	-0x8(%rbp), %eax
+000000010000098b	jg	0x1000009ab
+0000000100000991	movl	-0xc(%rbp), %eax
+0000000100000994	imull	-0x4(%rbp), %eax
+0000000100000998	movl	%eax, -0xc(%rbp)
+000000010000099b	movl	-0x10(%rbp), %eax
+000000010000099e	addl	$0x1, %eax
+00000001000009a3	movl	%eax, -0x10(%rbp)
+00000001000009a6	jmp	0x100000985
+00000001000009ab	jmp	0x1000009b0
+00000001000009b0	movl	-0xc(%rbp), %eax
+00000001000009b3	popq	%rbp
+00000001000009b4	retq
+00000001000009b5	nopw	%cs:(%rax,%rax)
+_initializeArray:
+00000001000009c0	pushq	%rbp
+00000001000009c1	movq	%rsp, %rbp
+00000001000009c4	subq	$0x10, %rsp
+00000001000009c8	leaq	_inputtedValue(%rip), %rax
+00000001000009cf	movl	$0x0, -0x4(%rbp)
+00000001000009d6	movslq	(%rax), %rax
+00000001000009d9	shlq	$0x3, %rax
+00000001000009dd	movq	%rax, %rdi
+00000001000009e0	callq	0x100000eb2             ## symbol stub for: _malloc
+00000001000009e5	leaq	_NQBoard(%rip), %rdi
+00000001000009ec	movq	%rax, (%rdi)
+00000001000009ef	movl	$0x0, -0x8(%rbp)
+00000001000009f6	leaq	_inputtedValue(%rip), %rax
+00000001000009fd	movl	-0x8(%rbp), %ecx
+0000000100000a00	cmpl	(%rax), %ecx
+0000000100000a02	jge	0x100000a40
+0000000100000a08	leaq	_inputtedValue(%rip), %rax
+0000000100000a0f	movslq	(%rax), %rax
+0000000100000a12	shlq	$0x2, %rax
+0000000100000a16	movq	%rax, %rdi
+0000000100000a19	callq	0x100000eb2             ## symbol stub for: _malloc
+0000000100000a1e	leaq	_NQBoard(%rip), %rdi
+0000000100000a25	movq	(%rdi), %rdi
+0000000100000a28	movslq	-0x8(%rbp), %rcx
+0000000100000a2c	movq	%rax, (%rdi,%rcx,8)
+0000000100000a30	movl	-0x8(%rbp), %eax
+0000000100000a33	addl	$0x1, %eax
+0000000100000a38	movl	%eax, -0x8(%rbp)
+0000000100000a3b	jmp	0x1000009f6
+0000000100000a40	movl	$0x0, -0xc(%rbp)
+0000000100000a47	leaq	_inputtedValue(%rip), %rax
+0000000100000a4e	movl	-0xc(%rbp), %ecx
+0000000100000a51	cmpl	(%rax), %ecx
+0000000100000a53	jge	0x100000ab4
+0000000100000a59	movl	$0x0, -0x10(%rbp)
+0000000100000a60	leaq	_inputtedValue(%rip), %rax
+0000000100000a67	movl	-0x10(%rbp), %ecx
+0000000100000a6a	cmpl	(%rax), %ecx
+0000000100000a6c	jge	0x100000a9f
+0000000100000a72	leaq	_NQBoard(%rip), %rax
+0000000100000a79	movslq	-0x10(%rbp), %rcx
+0000000100000a7d	movslq	-0xc(%rbp), %rdx
+0000000100000a81	movq	(%rax), %rax
+0000000100000a84	movq	(%rax,%rdx,8), %rax
+0000000100000a88	movl	$0x0, (%rax,%rcx,4)
+0000000100000a8f	movl	-0x10(%rbp), %eax
+0000000100000a92	addl	$0x1, %eax
+0000000100000a97	movl	%eax, -0x10(%rbp)
+0000000100000a9a	jmp	0x100000a60
+0000000100000a9f	jmp	0x100000aa4
+0000000100000aa4	movl	-0xc(%rbp), %eax
+0000000100000aa7	addl	$0x1, %eax
+0000000100000aac	movl	%eax, -0xc(%rbp)
+0000000100000aaf	jmp	0x100000a47
+0000000100000ab4	addq	$0x10, %rsp
+0000000100000ab8	popq	%rbp
+0000000100000ab9	retq
+0000000100000aba	nopw	(%rax,%rax)
+_printArray:
+0000000100000ac0	pushq	%rbp
+0000000100000ac1	movq	%rsp, %rbp
+0000000100000ac4	subq	$0x20, %rsp
+0000000100000ac8	leaq	0x46b(%rip), %rdi       ## literal pool for: "%s"
+0000000100000acf	leaq	0x478(%rip), %rsi       ## literal pool for: "{\n"
+0000000100000ad6	movb	$0x0, %al
+0000000100000ad8	callq	0x100000ebe             ## symbol stub for: _printf
+0000000100000add	movl	$0x0, -0x4(%rbp)
+0000000100000ae4	movl	%eax, -0xc(%rbp)
+0000000100000ae7	leaq	_inputtedValue(%rip), %rax
+0000000100000aee	movl	-0x4(%rbp), %ecx
+0000000100000af1	cmpl	(%rax), %ecx
+0000000100000af3	jge	0x100000b7b
+0000000100000af9	movl	$0x0, -0x8(%rbp)
+0000000100000b00	leaq	_inputtedValue(%rip), %rax
+0000000100000b07	movl	-0x8(%rbp), %ecx
+0000000100000b0a	cmpl	(%rax), %ecx
+0000000100000b0c	jge	0x100000b53
+0000000100000b12	leaq	0x438(%rip), %rdi       ## literal pool for: "%d%s"
+0000000100000b19	leaq	0x436(%rip), %rdx       ## literal pool for: ", "
+0000000100000b20	leaq	_NQBoard(%rip), %rax
+0000000100000b27	movslq	-0x8(%rbp), %rcx
+0000000100000b2b	movslq	-0x4(%rbp), %rsi
+0000000100000b2f	movq	(%rax), %rax
+0000000100000b32	movq	(%rax,%rsi,8), %rax
+0000000100000b36	movl	(%rax,%rcx,4), %esi
+0000000100000b39	movb	$0x0, %al
+0000000100000b3b	callq	0x100000ebe             ## symbol stub for: _printf
+0000000100000b40	movl	%eax, -0x10(%rbp)
+0000000100000b43	movl	-0x8(%rbp), %eax
+0000000100000b46	addl	$0x1, %eax
+0000000100000b4b	movl	%eax, -0x8(%rbp)
+0000000100000b4e	jmp	0x100000b00
+0000000100000b53	leaq	0x3e0(%rip), %rdi       ## literal pool for: "%s"
+0000000100000b5a	leaq	0x3f8(%rip), %rsi       ## literal pool for: "\n"
+0000000100000b61	movb	$0x0, %al
+0000000100000b63	callq	0x100000ebe             ## symbol stub for: _printf
+0000000100000b68	movl	%eax, -0x14(%rbp)
+0000000100000b6b	movl	-0x4(%rbp), %eax
+0000000100000b6e	addl	$0x1, %eax
+0000000100000b73	movl	%eax, -0x4(%rbp)
+0000000100000b76	jmp	0x100000ae7
+0000000100000b7b	leaq	0x3b8(%rip), %rdi       ## literal pool for: "%s"
+0000000100000b82	leaq	0x3d2(%rip), %rsi       ## literal pool for: "}\n"
+0000000100000b89	movb	$0x0, %al
+0000000100000b8b	callq	0x100000ebe             ## symbol stub for: _printf
+0000000100000b90	movl	%eax, -0x18(%rbp)
+0000000100000b93	addq	$0x20, %rsp
+0000000100000b97	popq	%rbp
+0000000100000b98	retq
+0000000100000b99	nopl	(%rax)
+_isSafe:
+0000000100000ba0	pushq	%rbp
+0000000100000ba1	movq	%rsp, %rbp
+0000000100000ba4	movl	%edi, -0x8(%rbp)
+0000000100000ba7	movl	%esi, -0xc(%rbp)
+0000000100000baa	movl	$0x0, -0x10(%rbp)
+0000000100000bb1	movl	-0x10(%rbp), %eax
+0000000100000bb4	cmpl	-0xc(%rbp), %eax
+0000000100000bb7	jge	0x100000c01
+0000000100000bbd	leaq	_NQBoard(%rip), %rax
+0000000100000bc4	movslq	-0x10(%rbp), %rcx
+0000000100000bc8	movslq	-0x8(%rbp), %rdx
+0000000100000bcc	movq	(%rax), %rax
+0000000100000bcf	movq	(%rax,%rdx,8), %rax
+0000000100000bd3	cmpl	$0x1, (%rax,%rcx,4)
+0000000100000bda	jne	0x100000bec
+0000000100000be0	movl	$0x0, -0x4(%rbp)
+0000000100000be7	jmp	0x100000d25
+0000000100000bec	jmp	0x100000bf1
+0000000100000bf1	movl	-0x10(%rbp), %eax
+0000000100000bf4	addl	$0x1, %eax
+0000000100000bf9	movl	%eax, -0x10(%rbp)
+0000000100000bfc	jmp	0x100000bb1
+0000000100000c01	movl	-0x8(%rbp), %eax
+0000000100000c04	movl	%eax, -0x10(%rbp)
+0000000100000c07	movl	-0xc(%rbp), %eax
+0000000100000c0a	movl	%eax, -0x14(%rbp)
+0000000100000c0d	xorl	%eax, %eax
+0000000100000c0f	movb	%al, %cl
+0000000100000c11	cmpl	$0x0, -0x10(%rbp)
+0000000100000c18	movb	%cl, -0x15(%rbp)
+0000000100000c1b	jl	0x100000c2e
+0000000100000c21	cmpl	$0x0, -0x14(%rbp)
+0000000100000c28	setge	%al
+0000000100000c2b	movb	%al, -0x15(%rbp)
+0000000100000c2e	movb	-0x15(%rbp), %al
+0000000100000c31	testb	$0x1, %al
+0000000100000c33	jne	0x100000c3e
+0000000100000c39	jmp	0x100000c8d
+0000000100000c3e	leaq	_NQBoard(%rip), %rax
+0000000100000c45	movslq	-0x14(%rbp), %rcx
+0000000100000c49	movslq	-0x10(%rbp), %rdx
+0000000100000c4d	movq	(%rax), %rax
+0000000100000c50	movq	(%rax,%rdx,8), %rax
+0000000100000c54	cmpl	$0x1, (%rax,%rcx,4)
+0000000100000c5b	jne	0x100000c6d
+0000000100000c61	movl	$0x0, -0x4(%rbp)
+0000000100000c68	jmp	0x100000d25
+0000000100000c6d	jmp	0x100000c72
+0000000100000c72	movl	-0x10(%rbp), %eax
+0000000100000c75	addl	$0xffffffff, %eax       ## imm = 0xFFFFFFFF
+0000000100000c7a	movl	%eax, -0x10(%rbp)
+0000000100000c7d	movl	-0x14(%rbp), %eax
+0000000100000c80	addl	$0xffffffff, %eax       ## imm = 0xFFFFFFFF
+0000000100000c85	movl	%eax, -0x14(%rbp)
+0000000100000c88	jmp	0x100000c0d
+0000000100000c8d	movl	-0x8(%rbp), %eax
+0000000100000c90	movl	%eax, -0x10(%rbp)
+0000000100000c93	movl	-0xc(%rbp), %eax
+0000000100000c96	movl	%eax, -0x14(%rbp)
+0000000100000c99	xorl	%eax, %eax
+0000000100000c9b	movb	%al, %cl
+0000000100000c9d	cmpl	$0x0, -0x14(%rbp)
+0000000100000ca4	movb	%cl, -0x16(%rbp)
+0000000100000ca7	jl	0x100000cbf
+0000000100000cad	leaq	_inputtedValue(%rip), %rax
+0000000100000cb4	movl	-0x10(%rbp), %ecx
+0000000100000cb7	cmpl	(%rax), %ecx
+0000000100000cb9	setl	%dl
+0000000100000cbc	movb	%dl, -0x16(%rbp)
+0000000100000cbf	movb	-0x16(%rbp), %al
+0000000100000cc2	testb	$0x1, %al
+0000000100000cc4	jne	0x100000ccf
+0000000100000cca	jmp	0x100000d1e
+0000000100000ccf	leaq	_NQBoard(%rip), %rax
+0000000100000cd6	movslq	-0x14(%rbp), %rcx
+0000000100000cda	movslq	-0x10(%rbp), %rdx
+0000000100000cde	movq	(%rax), %rax
+0000000100000ce1	movq	(%rax,%rdx,8), %rax
+0000000100000ce5	cmpl	$0x1, (%rax,%rcx,4)
+0000000100000cec	jne	0x100000cfe
+0000000100000cf2	movl	$0x0, -0x4(%rbp)
+0000000100000cf9	jmp	0x100000d25
+0000000100000cfe	jmp	0x100000d03
+0000000100000d03	movl	-0x10(%rbp), %eax
+0000000100000d06	addl	$0x1, %eax
+0000000100000d0b	movl	%eax, -0x10(%rbp)
+0000000100000d0e	movl	-0x14(%rbp), %eax
+0000000100000d11	addl	$0xffffffff, %eax       ## imm = 0xFFFFFFFF
+0000000100000d16	movl	%eax, -0x14(%rbp)
+0000000100000d19	jmp	0x100000c99
+0000000100000d1e	movl	$0x1, -0x4(%rbp)
+0000000100000d25	movl	-0x4(%rbp), %eax
+0000000100000d28	popq	%rbp
+0000000100000d29	retq
+0000000100000d2a	nopw	(%rax,%rax)
+_solveNQUtil:
+0000000100000d30	pushq	%rbp
+0000000100000d31	movq	%rsp, %rbp
+0000000100000d34	subq	$0x10, %rsp
+0000000100000d38	leaq	_inputtedValue(%rip), %rax
+0000000100000d3f	movl	%edi, -0x8(%rbp)
+0000000100000d42	movl	-0x8(%rbp), %edi
+0000000100000d45	cmpl	(%rax), %edi
+0000000100000d47	jl	0x100000d59
+0000000100000d4d	movl	$0x1, -0x4(%rbp)
+0000000100000d54	jmp	0x100000e05
+0000000100000d59	movl	$0x0, -0xc(%rbp)
+0000000100000d60	leaq	_inputtedValue(%rip), %rax
+0000000100000d67	movl	-0xc(%rbp), %ecx
+0000000100000d6a	cmpl	(%rax), %ecx
+0000000100000d6c	jge	0x100000dfe
+0000000100000d72	movl	-0xc(%rbp), %edi
+0000000100000d75	movl	-0x8(%rbp), %esi
+0000000100000d78	callq	_isSafe
+0000000100000d7d	cmpl	$0x1, %eax
+0000000100000d82	jne	0x100000de9
+0000000100000d88	leaq	_NQBoard(%rip), %rax
+0000000100000d8f	movslq	-0x8(%rbp), %rcx
+0000000100000d93	movslq	-0xc(%rbp), %rdx
+0000000100000d97	movq	(%rax), %rax
+0000000100000d9a	movq	(%rax,%rdx,8), %rax
+0000000100000d9e	movl	$0x1, (%rax,%rcx,4)
+0000000100000da5	movl	-0x8(%rbp), %esi
+0000000100000da8	addl	$0x1, %esi
+0000000100000dae	movl	%esi, %edi
+0000000100000db0	callq	_solveNQUtil
+0000000100000db5	cmpl	$0x0, %eax
+0000000100000dba	je	0x100000dcc
+0000000100000dc0	movl	$0x1, -0x4(%rbp)
+0000000100000dc7	jmp	0x100000e05
+0000000100000dcc	leaq	_NQBoard(%rip), %rax
+0000000100000dd3	movslq	-0x8(%rbp), %rcx
+0000000100000dd7	movslq	-0xc(%rbp), %rdx
+0000000100000ddb	movq	(%rax), %rax
+0000000100000dde	movq	(%rax,%rdx,8), %rax
+0000000100000de2	movl	$0x0, (%rax,%rcx,4)
+0000000100000de9	jmp	0x100000dee
+0000000100000dee	movl	-0xc(%rbp), %eax
+0000000100000df1	addl	$0x1, %eax
+0000000100000df6	movl	%eax, -0xc(%rbp)
+0000000100000df9	jmp	0x100000d60
+0000000100000dfe	movl	$0x0, -0x4(%rbp)
+0000000100000e05	movl	-0x4(%rbp), %eax
+0000000100000e08	addq	$0x10, %rsp
+0000000100000e0c	popq	%rbp
+0000000100000e0d	retq
+0000000100000e0e	nop
+_solveNQ:
+0000000100000e10	pushq	%rbp
+0000000100000e11	movq	%rsp, %rbp
+0000000100000e14	subq	$0x10, %rsp
+0000000100000e18	leaq	_inputtedValue(%rip), %rax
+0000000100000e1f	cmpl	$0x0, (%rax)
+0000000100000e25	jle	0x100000e77
+0000000100000e2b	callq	_initializeArray
+0000000100000e30	xorl	%edi, %edi
+0000000100000e32	callq	_solveNQUtil
+0000000100000e37	cmpl	$0x0, %eax
+0000000100000e3c	jne	0x100000e66
+0000000100000e42	leaq	0xf1(%rip), %rdi        ## literal pool for: "%s"
+0000000100000e49	leaq	0x10e(%rip), %rsi       ## literal pool for: "Solution does not exist\n"
+0000000100000e50	movb	$0x0, %al
+0000000100000e52	callq	0x100000ebe             ## symbol stub for: _printf
+0000000100000e57	movl	$0x0, -0x4(%rbp)
+0000000100000e5e	movl	%eax, -0x8(%rbp)
+0000000100000e61	jmp	0x100000e96
+0000000100000e66	callq	_printArray
+0000000100000e6b	movl	$0x1, -0x4(%rbp)
+0000000100000e72	jmp	0x100000e96
+0000000100000e77	leaq	0xbc(%rip), %rdi        ## literal pool for: "%s"
+0000000100000e7e	leaq	0xf2(%rip), %rsi        ## literal pool for: "Please enter a valid number"
+0000000100000e85	movb	$0x0, %al
+0000000100000e87	callq	0x100000ebe             ## symbol stub for: _printf
+0000000100000e8c	movl	%eax, -0xc(%rbp)
+0000000100000e8f	movl	$0x0, -0x4(%rbp)
+0000000100000e96	movl	-0x4(%rbp), %eax
+0000000100000e99	addq	$0x10, %rsp
+0000000100000e9d	popq	%rbp
+0000000100000e9e	retq

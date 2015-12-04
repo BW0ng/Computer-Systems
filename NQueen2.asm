@@ -29,6 +29,12 @@
 	syscall 
 .end_macro 
 
+.macro printString()
+	la 	$a0, string 
+	li 	$v0, 4
+	syscall
+.end_macro 
+
 main:
 	# Print out MIPS Program By:
 	la 	$a0, greeting 
@@ -170,6 +176,9 @@ initializeStack:
 	mult	$t0, $s0
 	mflo	$s3
 	
+	mult	$s3, $s0
+	mflo	$s3
+	
 	addi	$t0, $zero, -1
 	mult	$t0, $s3
 	mflo	$t0
@@ -182,7 +191,7 @@ initializeStack:
 # Creating a push method for the stack
 push:
 	add	$t0, $sp, $s3
-	addi	$t1, $ra, 4
+	addi	$t1, $ra, 8
 	sw	$t1, 0($t0)		
 	addi	$s3, $s3, -4
 	jr	$ra
@@ -197,6 +206,7 @@ pushr:
 # Creating a pop method and storing it in $s4
 pop:
 	add	$t0, $sp, $s3
+	addi	$t0, $t0, 4
 	lw	$t1, 0($t0)
 	addi	$s3, $s3, 4
 	jr	$t1
@@ -246,6 +256,7 @@ solveNQUtil:
 	j	return0
 	nop
 isSafe:
+	printString()
 	add	$s7, $zero, $zero 		#Initializing $s7 = i = 0
 	jal	pop
 	nop
@@ -306,7 +317,7 @@ check:
 
 set1:
 	la	$t0, pushr
-	jalr	$s7, $t0
+	jalr	$s7, $t0		# Jalr Saves $ra in $s7 and return address in $t0
 	addi	$a3, $zero, 1
 	jal	saveVariableInArray
 	nop
@@ -336,8 +347,9 @@ end:
 	syscall 
 	
 	.data 
-greeting: .asciiz "\nMIPS Program By: "
-name:	  .asciiz  "Brandon Wong\n"
-promptText:	  .asciiz "Enter a number: "
+greeting: 			.asciiz "\nMIPS Program By: "
+name:	  		.asciiz  "Brandon Wong\n"
+promptText:	 	.asciiz "Enter a number: "
 noSolutionText:	.asciiz "Solution does not exist\n"
-array:		.space 	4
+string:			.asciiz 	"isSafe\n"
+array:			.space 	4
