@@ -2,6 +2,15 @@
 	# .text assembler directive
 	.text 
 	
+	# s0 = inputted number
+	# s1 = i
+	# s2 = j
+	# s3 = stack size  (inputted number * inputted number * 4) 
+	# s4 = row in isSafe
+	#s5 = counter to inputted value; used in NQUtil in the for loop
+	# s6 = 1
+	# s7 = column in isSafe
+	
 # The label main represents the starting point 
 
 # Macro making it easier to print new line
@@ -9,6 +18,14 @@
 	add	$t7, $a0, $zero
 	li	$a0, 10
 	li	$v0, 11
+	syscall
+	add	$a0, $t7, $zero
+.end_macro 
+
+.macro printReset()
+	add	$t7, $a0, $zero
+	la	$a0, reset
+	li	$v0, 4
 	syscall
 	add	$a0, $t7, $zero
 .end_macro 
@@ -232,14 +249,14 @@ pushr:
 
 pop:
 	addi	$s3, $s3, -4		# Subtracting it so it gets the value before
-	add	$t0, $sp, $s3		# Creating a pop method and storing it in $s4
+	add	$t0, $sp, $s3		# Creating a pop method and storing it in $t1
 	lw	$t1, 0($t0)
 	jr	$t1
 	nop
 	
 popLoop:
 	addi	$s3, $s3, -8		# Subtracting it so it gets the value before
-	add	$t0, $sp, $s3		# Creating a pop method and storing it in $s4
+	add	$t0, $sp, $s3		# Creating a pop method and storing it in $t1
 	lw	$t1, 0($t0)
 	jr	$t1
 	nop
@@ -248,6 +265,8 @@ noSolution:
 	la 	$a0, noSolutionText 	# print no solutions text
 	li 	$v0, 4
 	syscall
+	j	end
+	nop
 	
 solveNQ:
 	la	$t0, pushr		# Set 1 in the array
@@ -303,12 +322,13 @@ NQUtilForLoop:
 	
 isSafe:
 	add	$s7, $zero, $zero 		#Initializing $s7 = i = 0
+	addi	$v0, $zero, 1
 	jal	push
 	nop
 	jal	firstForLoop
 	nop
-	add	$s7, $zero, $a0			# Setting $s7 = col
 	add	$s4, $zero, $a1			# Setting $s4 = row
+	add	$s7, $zero, $a0			# Setting $s7 = col
 	jal	push
 	nop
 	jal	secondForLoop
@@ -319,6 +339,7 @@ isSafe:
 	nop
 	jal	thirdForLoop
 	nop
+	beq	$v0, $zero, return0
 	j	return1
 	nop
 
@@ -383,18 +404,19 @@ set0:
 	add	$a3, $zero, $zero
 	jal	saveVariableInArray
 	nop
+	printReset()
 	print()
 	j pop
 	nop
 	
 return1:
 	addi $v0, $zero, 1		# return 1
-	j	popLoop
+	j	pop
 	nop
 
 return0:
 	add	$v0, $zero, $zero		# return 0
-	j	popLoop
+	j	pop
 	nop
 return:
 	jr	$ra
@@ -409,5 +431,6 @@ name:	  		.asciiz  "Brandon Wong\n"
 promptText:	 	.asciiz "Enter a number: "
 noSolutionText:	.asciiz "Solution does not exist\n"
 string:			.asciiz 	"NQUtil\n"
+reset:			.asciiz	"reset\n"
 counter:			.space	4
 array:			.space 	4
