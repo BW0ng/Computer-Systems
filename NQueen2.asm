@@ -20,7 +20,6 @@
 	syscall 
 	li	$a0, 20
 	syscall 
-	
 .end_macro 
 
 .macro printChar(%c)
