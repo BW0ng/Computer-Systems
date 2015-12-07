@@ -1,6 +1,3 @@
-## Need to write pop and push methods for stack
-	
-		
 	# All program code is placed after the 
 	# .text assembler directive
 	.text 
@@ -55,15 +52,33 @@ main:
 	add $s1, $zero, $zero		# int i
 	add	$s2, $zero, $zero		#int j
 	
-	jal allocateArray
+	jal	allocateArray
 	nop
 	
-	j	printArray
+	add $s1, $zero, $zero		# int i
+	add	$s2, $zero, $zero		#int j
+	
+	add	$a0,	$s2, $zero
+	add	$a1, $s1, $zero
+	addi	$a3, $zero, 1
+	jal	saveVariableInArray
+	nop
+	addi	$a0, $a0, 1
+	addi	$a3, $zero, 5
+	jal	saveVariableInArray
+	nop
+	addi	$a0, $a0, 1
+	addi	$a3, $zero, 3
+	jal	saveVariableInArray
 	nop
 	
-	#jal	solveNQ
-	#nop
 	
+	add $s1, $zero, $zero		# int i
+	add	$s2, $zero, $zero		#int j
+	printChar(123)
+	printNewLine
+	jal printArray
+	nop
 	
 promptInt:
 	li 	$v0, 5
@@ -100,11 +115,6 @@ initializeArray:
 	addi	$s2, $s2, 1
 	beq	$s2, $s0, increment
 	
-	#addi	$t2, $zero, 4		# saving 4 to multiple input in
-	#mult	$s0, $t2			# Multiplying to figure out how many bytes to save
-	#mflo		$t2		# Saving byte amount
-	# addi		$sp, $sp, 5  #FIXME
-	
 	j	initializeArray
 	nop
 	
@@ -122,7 +132,7 @@ incrementAndNewLine:
 	nop
 	
 printArray:
-	beq $s1, $s0, printBrackets
+	beq $s1, $s0, end
 	
 	mult $s1, $s0
 	mflo $t0
@@ -138,60 +148,24 @@ printArray:
 	
 	j	printArray
 	nop
-	
-	
+saveVariableInArray:
+	mult $a1, $s0		#save variables(i, j)			a1 = i = row		a0 = j = col
+	mflo $t0
+	la  	$t1, array
+	add	$t1, $t1, $a0
+	add	$t1, $t1, $t0
+
+	sb  $a3, 0($t1)
+
+	jr	$ra
+	nop
 return:
 	jr	$s7
 	nop
 	
-solveNQ:
-	# Allocate and initialize array
-	jal	allocateArray
-	nop
-	
-	add	$a0, $zero, $zero		# Setting 0 in the parameters
-	jal	solveNQUtil			# calling solveNQUtil(0)
-	nop
-	
-	beqz $v0, noSolution
-	
-	# Initialize variables for use in print Array
-	add $s1, $zero, $zero		# int i
-	add	$s2, $zero, $zero		#int j
-	
-	printChar(123)
-	printNewLine
-	jal printArray
-	nop
-	
-solveNQUtil:
-	#sb	$ra, 0($sp)
-	jal return1
-	nop
-	jal solveNQUtil
-	nop
-	
-return1:
-	add	$v0, $zero, 1
-	#lb	$ra, 0($sp)
-	#printRegister($ra)
-	jr $ra
-	nop
-	
-noSolution:
-	la	$a0, noSolutionText
-	li	$v0, 4
-	syscall 
-	j	end
-	nop
-	
-printBrackets:
+end:
 	printChar(125)
 	printNewLine()
-	j	end
-	nop
-
-end:
 	li 	$v0, 10
 	syscall 
 	
@@ -199,5 +173,4 @@ end:
 greeting: .asciiz "\nMIPS Program By: "
 name:	  .asciiz  "Brandon Wong\n"
 promptText:	  .asciiz "Enter a number: "
-noSolutionText:	.asciiz	"Solution does not exist\n"
 array:		.space 	4
